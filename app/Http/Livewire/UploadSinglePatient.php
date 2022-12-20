@@ -7,6 +7,9 @@ use Livewire\Component;
 
 class UploadSinglePatient extends Component
 {
+    public $message = "";
+
+    public $success = false;
     public $hiv_clinic_no;
     public $family_name;
     public $given_name;
@@ -34,17 +37,32 @@ class UploadSinglePatient extends Component
             'gender' => $this->gender,
             'hiv_viral_load_date' => $this->hiv_viral_load_date,
             'return_visit_date' => $this->return_visit_date,
-            'phone_number' => $this->phone_number,
-            'care_giver_phone_number' => $this->care_giver_phone_number
+            'telephone_number' => $this->phone_number,
+            'care_giver_telephone_number' => $this->care_giver_phone_number
         ]);
+
 
         if($create) {
             $this->message = "Patient added successfully!";
             $this->success = true;
             $this->isUpload = false;
             $this->buttonText = 'Upload Batch';
-            // $this->reset();
+            $this->clearForm();
         }
+    }
+
+    public function clearForm(){
+        $this->hiv_clinic_no = '';
+        $this->family_name = '';
+        $this->given_name = '';
+        $this->gender = '';
+        $this->hiv_viral_load_date = '';
+        $this->return_visit_date = '';
+        $this->phone_number = '';
+        $this->care_giver_phone_number = '';
+
+        $this->success = true;
+        $this->message = "Patient added successfully!";
     }
 
     public function filterPatient($clinic) {

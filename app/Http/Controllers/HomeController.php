@@ -37,14 +37,14 @@ class HomeController extends Controller
 
     public function listPatients ()
     {
-        $patients = Patient::get();
+        $patients = Patient::paginate(8);
         // $patients = Patient::whereDate('return_visit_date', Carbon::now()->subDay())->get();
         return view('clients.index', compact('patients'));
     }
 
     public function upComingAppointments ()
     {
-        $patients = Patient::orderBy('return_visit_date', 'asc')->where('return_visit_date', '>=', Carbon::now())->get();
+        $patients = Patient::whereDate('return_visit_date', Carbon::now()->addDay())->paginate(8);
         return view('clients.upcoming', compact('patients'));
     }
 

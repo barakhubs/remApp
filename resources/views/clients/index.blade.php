@@ -63,10 +63,9 @@
                                     </tr>
                                     @endif
                                 </tbody>
-                                <tfoot>
-
-                                </tfoot>
+                                
                         </table>
+                        {{ $patients->links() }}
                     </div>
 
 

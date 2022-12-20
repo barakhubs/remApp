@@ -36,14 +36,14 @@ class SendSms
 
         // get all upcoming
 
-        $appointments = Patient::whereDate('return_visit_date', Carbon::now()->subDay())->get();
+        $appointments = Patient::whereDate('return_visit_date', Carbon::now()->addDay())->get();
 
         foreach ($appointments as $key => $appointment) {
             // send sms
             $sms->send([
                 'to'      => '+256'.$appointment->telephone_number,
-                'message' => 'Hello '.$appointment->given_name. ', I am reminding you of your appointment at ' .$appointment->hiv_clinic_no. ' on '.$appointment->return_visit_date .'\n'.
-                             'Mi ngoni '.$appointment->given_name. ', Ma mi enga oti ta mivu mi ni ba le an\'draa ' .$appointment->hiv_clinic_no. ' aro jo\'a risi o\'mba o\'du ' .$appointment->return_visit_date
+                'message' => "Hello ".$appointment->given_name. ", \n This is a remainder that you have an appointment at " .$appointment->hiv_clinic_no. " on ".$appointment->return_visit_date ."\n We are looking forward to seeing you \n\n".
+                             "Mi ngoni ".$appointment->given_name. ", Ma mi enga oti ta mivu mi ni ba le an\'draa " .$appointment->hiv_clinic_no. " aro jo\'a risi o\'mba o\'du " .$appointment->return_visit_date
             ]);
 
         }

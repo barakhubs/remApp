@@ -26,7 +26,9 @@
                 <div class="card-header bg-success text-light pt-3 pb-2">{{ __('Send Custom SMS') }}</div>
 
                 <div class="card-body">
-
+                    <form>
+                    
+                    </form>
                 </div>
             </div>
         </div>
